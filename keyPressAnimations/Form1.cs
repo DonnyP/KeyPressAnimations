@@ -26,9 +26,23 @@ namespace keyPressAnimations
         //create graphic objects
         SolidBrush drawBrush = new SolidBrush(Color.Black);
 
+        //Array
+        Image[] backgrounds = new Image[2];
+        Image[] redGuy = new Image[4];
+
         public Form1()
         {
             InitializeComponent();
+            //Background
+            backgrounds[0] = Properties.Resources.forest; //Image image0 = Properties.Resources.forest;
+            backgrounds[1] = Properties.Resources.pirate; //Image image1 = Properties.Resources.pirate;
+            this.BackgroundImage = backgrounds[0];  //Image[] backgrounds = { image0, image1 };
+
+            //Character
+            redGuy[0] = Properties.Resources.RedGuyDown;
+            redGuy[1] = Properties.Resources.RedGuyUp;
+            redGuy[2] = Properties.Resources.RedGuyLeft;
+            redGuy[3] = Properties.Resources.RedGuyRight;
 
             //start the timer when the program starts
             gameTimer.Enabled = true;
