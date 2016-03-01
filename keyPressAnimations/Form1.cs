@@ -16,6 +16,9 @@ namespace keyPressAnimations
 {
     public partial class Form1 : Form
     {
+        //Key Press value 
+        int keyValue = 0;
+
         //initial starting points for black rectangle
         int drawX = 100;
         int drawY = 200;
@@ -36,13 +39,16 @@ namespace keyPressAnimations
             //Background
             backgrounds[0] = Properties.Resources.forest; //Image image0 = Properties.Resources.forest;
             backgrounds[1] = Properties.Resources.pirate; //Image image1 = Properties.Resources.pirate;
-            this.BackgroundImage = backgrounds[0];  //Image[] backgrounds = { image0, image1 };
+            this.BackgroundImage = backgrounds[1];  //Image[] backgrounds = { image0, image1 };
 
             //Character
             redGuy[0] = Properties.Resources.RedGuyDown;
             redGuy[1] = Properties.Resources.RedGuyUp;
             redGuy[2] = Properties.Resources.RedGuyLeft;
             redGuy[3] = Properties.Resources.RedGuyRight;
+            //formGraphics.DrawImage(image1, heroX, heroY, heroSize, heroSize);
+            //Graphics formGraphics = this.CreateGraphics();
+            //formGraphics.DrawImage(redGuy[0], 100, 200, 10, 10);
 
             //start the timer when the program starts
             gameTimer.Enabled = true;
@@ -98,21 +104,29 @@ namespace keyPressAnimations
         {
             //checks to see if any keys have been pressed and adjusts the X or Y value
             //for the rectangle appropriately
+            //redGuy[0] = Properties.Resources.RedGuyDown;
+            //redGuy[1] = Properties.Resources.RedGuyUp;
+            //redGuy[2] = Properties.Resources.RedGuyLeft;
+            //redGuy[3] = Properties.Resources.RedGuyRight;
             if (leftArrowDown == true)
             {
                 drawX--;
+                keyValue = 2; //LEFT
             }
             if (downArrowDown == true)
             {
                 drawY++;
+                keyValue = 0; //DOWN
             }
             if (rightArrowDown == true)
             {
                 drawX++;
+                keyValue = 3; //RIGHT
             }
             if (upArrowDown == true)
             {
                 drawY--;
+                keyValue = 1;
             }
 
             //refresh the screen, which causes the Form1_Paint method to run
@@ -124,7 +138,9 @@ namespace keyPressAnimations
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             //draw rectangle to screen
-            e.Graphics.FillRectangle(drawBrush, drawX, drawY, 10, 20);
+            // e.Graphics.FillRectangle(drawBrush, drawX, drawY, 10, 20);
+            //formGraphics.DrawImage(image1, heroX, heroY, heroSizeWidth, heroSizeHeight);
+            e.Graphics.DrawImage(redGuy[keyValue], drawX, drawY, 45, 50);
         }
 
     }
